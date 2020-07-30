@@ -19,3 +19,4 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\Microsoft.WindowsAPICodePack.Shell.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp.csproj.CoreCompileInputs.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp.csproj.CopyComplete
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp_MarkupCompile.lref

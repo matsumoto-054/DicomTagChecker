@@ -15,6 +15,8 @@ namespace DicomTagChecker.Temp
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = logWriter;
         }
 
         private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
@@ -37,11 +39,12 @@ namespace DicomTagChecker.Temp
             //DicomFileReader dicomFileReader = new DicomFileReader();
             //dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
 
-            this.LogDataGrid.ItemsSource = logWriter.WriteLog();
+            this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"{FolderPathTextBox.Text}内のファイルを取得開始");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -51,27 +54,6 @@ namespace DicomTagChecker.Temp
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-        }
-
-        private void LogDataGrid_AutoGeneratingColumn(object sender, System.Windows.Controls.DataGridAutoGeneratingColumnEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "Date":
-                    e.Column.Header = "日時";
-                    e.Column.DisplayIndex = 0;
-                    break;
-                case "Status":
-                    e.Column.Header = "状態";
-                    e.Column.DisplayIndex = 1;
-                    break;
-                case "Contents":
-                    e.Column.Header = "処理";
-                    e.Column.DisplayIndex = 2;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
         }
     }
 }

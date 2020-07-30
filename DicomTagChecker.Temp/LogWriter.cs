@@ -9,12 +9,12 @@ namespace DicomTagChecker.Temp
 
         LogContents log = new LogContents();
 
-        public ObservableCollection<LogContents> WriteLog()
+        public ObservableCollection<LogContents> WriteLog(string status, string contents)
         {
 
             log.Date = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            log.Status = "OK";
-            log.Contents = "ButtonClick";
+            log.Status = status;
+            log.Contents = contents;
 
             logContents.Add(log);
 
