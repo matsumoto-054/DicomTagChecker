@@ -72,7 +72,7 @@
             Grid.Row="1"
             Height="30"
             Width="60"
-            Margin="470,180,0,35" />
+            Margin="470,180,0,35" Click="CloseButton_Click" />
 
         <StatusBar
             Grid.Row="1"
