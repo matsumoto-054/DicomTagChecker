@@ -1,7 +1,7 @@
 ﻿<Window x:Class="DicomTagChecker.Temp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{Binding Title}" Height="350" Width="600" WindowStartupLocation="CenterScreen" FontFamily="Meiryo">
+        Title="DICOMタグチェッカー" Height="350" Width="600" WindowStartupLocation="CenterScreen" FontFamily="Meiryo">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -24,7 +24,7 @@
             Content="..."
             Height="20"
             Width="25"
-            Margin="505,22,0,18" />
+            Margin="505,22,0,18" Click="SelectFolderButton_Click" />
 
         <TextBlock
             Grid.Row="1"
@@ -66,7 +66,11 @@
 
         <StatusBar
             Grid.Row="1"
-            VerticalAlignment="Bottom">準備完了
+            VerticalAlignment="Bottom">
+            <Label
+                Name="StatusBarLabel">
+                準備完了
+            </Label>
         </StatusBar>
     </Grid>
 </Window>

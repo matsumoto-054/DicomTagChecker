@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "r4RObzwgSeZ3IXz2+34t133gIgeKl4lLGq8Pklx1Xj/+w2uld3l0Oizt0qGyaOOjw+tHj9y6BR3cDWdkfC2lKg==",
+  "dgSpecHash": "6pfzqodTcQUruJNjNkF4v4r/dBaYkoypUh8nuPigqLAc9IrCXlntoAd9yrz+wkrrsQRoBGlRSqtZtnnWZuShwA==",
   "success": true,
   "projectFilePath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\matsu\\.nuget\\packages\\microsoft-windowsapicodepack-core\\1.1.4\\microsoft-windowsapicodepack-core.1.1.4.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\microsoft-windowsapicodepack-shell\\1.1.4\\microsoft-windowsapicodepack-shell.1.1.4.nupkg.sha512"
+  ],
   "logs": []
 }
