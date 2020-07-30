@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.IO;
 
 namespace DicomTagChecker.Temp
 {
     public class DicomFileReader
     {
-        //ファイルの移動（Temporaryへ）
+        public void ReadDicomFiles(string targetFolderPath, string temporaryFolderPath)
+        {
+            //ファイルの移動（Temporaryへ）
+            //File.Move(targetFolderPath, temporaryFolderPath);
 
-        //ファイル読込（Logへの書き出し）
+            //ファイル読込（Logへの書き出し）
 
-        //Validate
 
-        //引っかかったものをcsv出力
+            //Validate
+
+            //引っかかったものをcsv出力
+
+        }
     }
 }
