@@ -39,12 +39,16 @@ namespace DicomTagChecker.Temp
             //DicomFileReader dicomFileReader = new DicomFileReader();
             //dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
 
-            this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"{FolderPathTextBox.Text}内のファイルを取得開始");
+            this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var result = MessageBox.Show("取り込み処理を中断しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+            if(result == MessageBoxResult.Yes)
+            {
+                this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
