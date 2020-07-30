@@ -11,7 +11,6 @@ namespace DicomTagChecker.Temp
 
         public ObservableCollection<LogContents> WriteLog(string status, string contents)
         {
-
             log.Date = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             log.Status = status;
             log.Contents = contents;

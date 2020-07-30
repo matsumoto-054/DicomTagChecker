@@ -11,7 +11,7 @@ namespace DicomTagChecker.Temp
     public partial class MainWindow : Window
     {
         LogWriter logWriter = new LogWriter();
-        private bool isReading;
+        bool isReading;
 
         public MainWindow()
         {
@@ -73,6 +73,18 @@ namespace DicomTagChecker.Temp
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (isReading)
+            {
+                var result = MessageBox.Show("取り込み処理を中断してアプリを終了しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+                if (result == MessageBoxResult.Yes)
+                {
+                    this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
