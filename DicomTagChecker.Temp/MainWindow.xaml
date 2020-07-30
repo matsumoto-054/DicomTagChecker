@@ -37,6 +37,7 @@
             x:Name="LogDataGrid"
             ItemsSource="{Binding Path=LogContents}"
             AutoGenerateColumns="False"
+            HeadersVisibility="Column"
             Grid.Row="1"
             Height="160"
             Width="530"

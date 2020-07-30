@@ -11,6 +11,7 @@ namespace DicomTagChecker.Temp
     public partial class MainWindow : Window
     {
         LogWriter logWriter = new LogWriter();
+        private bool isReading;
 
         public MainWindow()
         {
@@ -34,20 +35,34 @@ namespace DicomTagChecker.Temp
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            if(String.IsNullOrWhiteSpace(FolderPathTextBox.Text))
+            {
+                this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", $"フォルダ未選択");
+                return;
+            }
+
             string temporaryFolder = Settings.Default.TemporaryFolder;
 
             //DicomFileReader dicomFileReader = new DicomFileReader();
             //dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
+            isReading = true;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("取り込み処理を中断しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
-            if(result == MessageBoxResult.Yes)
+            if (isReading)
             {
-                this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                var result = MessageBox.Show("取り込み処理を中断しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+                if(result == MessageBoxResult.Yes)
+                {
+                    this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                }
+            }
+            else
+            {
+                this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", $"処理未実行");
             }
         }
 
