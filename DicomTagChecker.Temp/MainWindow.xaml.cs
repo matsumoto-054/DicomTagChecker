@@ -16,8 +16,6 @@ namespace DicomTagChecker.Temp
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = logWriter;
         }
 
         private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
@@ -58,6 +56,7 @@ namespace DicomTagChecker.Temp
                 if(result == MessageBoxResult.Yes)
                 {
                     this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                    isReading = false;
                 }
             }
             else
