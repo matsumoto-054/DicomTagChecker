@@ -48,6 +48,7 @@ namespace DicomTagChecker.Temp
             dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
+            isReading = false;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
