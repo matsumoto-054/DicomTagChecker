@@ -41,11 +41,13 @@ namespace DicomTagChecker.Temp
 
             string temporaryFolder = Settings.Default.TemporaryFolder;
 
-            //DicomFileReader dicomFileReader = new DicomFileReader();
-            //dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
-
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
             isReading = true;
+
+            DicomFileReader dicomFileReader = new DicomFileReader();
+            dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
+
+            this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
