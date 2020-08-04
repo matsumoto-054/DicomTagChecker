@@ -47,8 +47,16 @@ namespace DicomTagChecker.Temp
             isReading = true;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
 
-            DicomFileReader dicomFileReader = new DicomFileReader();
-            dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
+            try
+            {
+                DicomFileReader dicomFileReader = new DicomFileReader();
+                dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
+            }
+            catch(Exception ex)
+            {
+                this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
+                return;
+            }
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
             isReading = false;
