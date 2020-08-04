@@ -34,5 +34,17 @@ namespace DicomTagChecker.Temp.Properties {
                 this["TemporaryFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".dcm")]
+        public string FilePattern {
+            get {
+                return ((string)(this["FilePattern"]));
+            }
+            set {
+                this["FilePattern"] = value;
+            }
+        }
     }
 }

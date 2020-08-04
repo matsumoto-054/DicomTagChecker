@@ -10,12 +10,14 @@ namespace DicomTagChecker.Temp
     /// </summary>
     public partial class MainWindow : Window
     {
+        StatusBarController statusBarController = new StatusBarController();
         LogWriter logWriter = new LogWriter();
-        bool isReading;
+        bool isReading = false;
 
         public MainWindow()
         {
             InitializeComponent();
+            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
         }
 
         private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
@@ -43,12 +45,14 @@ namespace DicomTagChecker.Temp
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
             isReading = true;
+            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
 
             DicomFileReader dicomFileReader = new DicomFileReader();
             dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
             isReading = false;
+            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +64,7 @@ namespace DicomTagChecker.Temp
                 {
                     this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
                     isReading = false;
+                    StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
                 }
             }
             else

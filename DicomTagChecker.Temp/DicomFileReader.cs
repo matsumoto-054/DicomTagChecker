@@ -1,4 +1,5 @@
 ﻿using Dicom;
+using DicomTagChecker.Temp.Properties;
 using System;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace DicomTagChecker.Temp
 {
     public class DicomFileReader
     {
-        private string filePattern;
+        private string filePattern = Settings.Default.FilePattern;
         CsvFileMaker csvFileMaker = new CsvFileMaker();
 
         public void ReadDicomFiles(string targetFolderPath, string temporaryFolderPath)

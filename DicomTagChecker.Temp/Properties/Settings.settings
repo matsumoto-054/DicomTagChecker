@@ -5,5 +5,8 @@
     <Setting Name="TemporaryFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\UsTEC\DicomTagChecker</Value>
     </Setting>
+    <Setting Name="FilePattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.dcm</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
