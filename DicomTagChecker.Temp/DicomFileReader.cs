@@ -9,17 +9,12 @@ namespace DicomTagChecker.Temp
     public class DicomFileReader
     {
         private string filePattern = Settings.Default.FilePattern;
-        CsvFileMaker csvFileMaker = new CsvFileMaker();
+        private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
         public void ReadDicomFiles(string targetFolderPath, string temporaryFolderPath)
         {
-            //ファイルの移動（Temporaryへ）
-            if (!Directory.Exists(temporaryFolderPath))
-            {
-                Directory.CreateDirectory(temporaryFolderPath);
-            }
-
-            File.Copy(targetFolderPath, temporaryFolderPath);
+            //ファイルのコピー（フォルダごとTemporaryへ）
+            this.CopyDirectory(targetFolderPath, temporaryFolderPath);
 
             //ファイル読込
             //Validate
@@ -38,6 +33,37 @@ namespace DicomTagChecker.Temp
                     //引っかかったものをcsv出力
                     csvFileMaker.RecordErrorFiles(dicomTagContents);
                 }
+            }
+        }
+
+        private void CopyDirectory(string sourceDirName, string destDirName)
+        {
+            //コピー先のディレクトリがないときは作る
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+                //属性もコピー
+                File.SetAttributes(destDirName, File.GetAttributes(sourceDirName));
+            }
+
+            //コピー先のディレクトリ名の末尾に"\"をつける
+            if (destDirName[destDirName.Length - 1] != Path.DirectorySeparatorChar)
+            {
+                destDirName = destDirName + Path.DirectorySeparatorChar;
+            }
+
+            //コピー元のディレクトリにあるファイルをコピー
+            string[] files = Directory.GetFiles(sourceDirName);
+            foreach (string file in files)
+            {
+                File.Copy(file, destDirName + Path.GetFileName(file), true);
+            }
+
+            //コピー元のディレクトリにあるディレクトリについて、再帰的に呼び出す
+            string[] dirs = Directory.GetDirectories(sourceDirName);
+            foreach (string dir in dirs)
+            {
+                CopyDirectory(dir, destDirName + Path.GetFileName(dir));
             }
         }
 
