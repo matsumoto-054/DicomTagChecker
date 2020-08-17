@@ -22,6 +22,7 @@ namespace DicomTagChecker.Temp
         {
             InitializeComponent();
 
+            CancelButton.IsEnabled = false;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
         }
 
@@ -47,6 +48,9 @@ namespace DicomTagChecker.Temp
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", $"フォルダ未選択");
                 return;
             }
+
+            StartButton.IsEnabled = false;
+            CancelButton.IsEnabled = true;
 
             string temporaryFolder = Settings.Default.TemporaryFolder;
 
@@ -79,6 +83,9 @@ namespace DicomTagChecker.Temp
 
             Cancellation.Dispose();
             Cancellation = null;
+
+            StartButton.IsEnabled = true;
+            CancelButton.IsEnabled = false;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
