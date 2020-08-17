@@ -1,7 +1,9 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using DicomTagChecker.Temp.Properties;
-using System.Windows;
+﻿using DicomTagChecker.Temp.Properties;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace DicomTagChecker.Temp
 {
@@ -10,13 +12,16 @@ namespace DicomTagChecker.Temp
     /// </summary>
     public partial class MainWindow : Window
     {
-        StatusBarController statusBarController = new StatusBarController();
-        LogWriter logWriter = new LogWriter();
-        bool isReading = false;
+        private StatusBarController statusBarController = new StatusBarController();
+        private LogWriter logWriter = new LogWriter();
+        private bool isReading = false;
+
+        private CancellationTokenSource Cancellation;
 
         public MainWindow()
         {
             InitializeComponent();
+
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
         }
 
@@ -33,9 +38,11 @@ namespace DicomTagChecker.Temp
             }
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if(String.IsNullOrWhiteSpace(FolderPathTextBox.Text))
+            Cancellation = new CancellationTokenSource();
+
+            if (String.IsNullOrWhiteSpace(FolderPathTextBox.Text))
             {
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", $"フォルダ未選択");
                 return;
@@ -47,20 +54,31 @@ namespace DicomTagChecker.Temp
             isReading = true;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
 
-            try
+            await Task.Run(() =>
             {
-                DicomFileReader dicomFileReader = new DicomFileReader();
-                dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
-            }
-            catch(Exception ex)
-            {
-                this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
-                return;
-            }
+                try
+                {
+                    if (Cancellation.IsCancellationRequested)
+                    {
+                        return;
+                    }
 
-            this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
-            isReading = false;
-            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+                    DicomFileReader dicomFileReader = new DicomFileReader();
+                    dicomFileReader.ReadDicomFiles(FolderPathTextBox.Text, temporaryFolder);
+
+                    this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
+                    isReading = false;
+                    StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+                }
+                catch (Exception ex)
+                {
+                    this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
+                    return;
+                }
+            });
+
+            Cancellation.Dispose();
+            Cancellation = null;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -68,8 +86,13 @@ namespace DicomTagChecker.Temp
             if (isReading)
             {
                 var result = MessageBox.Show("取り込み処理を中断しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
-                if(result == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
+                    if (Cancellation != null)
+                    {
+                        Cancellation.Cancel();
+                    }
+
                     this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
                     isReading = false;
                     StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
