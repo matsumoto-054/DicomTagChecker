@@ -2,7 +2,7 @@
 
 namespace DicomTagChecker.Temp
 {
-    public class ValidateContents
+    public class ValidateDicomTagContents
     {
         public bool HasErrorTag(DicomTagContents dicomTagContents)
         {
@@ -18,6 +18,10 @@ namespace DicomTagChecker.Temp
             return true;
         }
 
+        /// <summary>
+        /// 患者IDを仮に1~32文字とする
+        /// </summary>
+        /// <param name="patientId"></param>
         public void ValidatePatientId(string patientId)
         {
             if (string.IsNullOrWhiteSpace(patientId) || !Regex.IsMatch(patientId, "^[0-9a-zA-Z-]{1,32}$"))

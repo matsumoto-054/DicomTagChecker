@@ -12,10 +12,11 @@ namespace DicomTagChecker.Temp
         private string filePattern = Settings.Default.FilePattern;
         private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
-        private MainWindow main = new MainWindow();
 
         public async Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath)
         {
+            MainWindow main = new MainWindow();
+
             await Task.Run(() =>
             {
                 //ファイルのコピー（フォルダごとTemporaryへ）
@@ -37,7 +38,7 @@ namespace DicomTagChecker.Temp
                         PatientId = dcmFile.Dataset.Get<string>(DicomTag.PatientID)
                     };
 
-                    ValidateContents validateContents = new ValidateContents();
+                    ValidateDicomTagContents validateContents = new ValidateDicomTagContents();
                     if (validateContents.HasErrorTag(dicomTagContents))
                     {
                         //引っかかったものをcsv出力
