@@ -3,6 +3,7 @@ using DicomTagChecker.Temp.Properties;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DicomTagChecker.Temp
 {
@@ -11,29 +12,39 @@ namespace DicomTagChecker.Temp
         private string filePattern = Settings.Default.FilePattern;
         private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
-        public void ReadDicomFiles(string targetFolderPath, string temporaryFolderPath)
+        private MainWindow main = new MainWindow();
+
+        public async Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath)
         {
-            //ファイルのコピー（フォルダごとTemporaryへ）
-            this.CopyDirectory(targetFolderPath, temporaryFolderPath);
-
-            //ファイル読込
-            //Validate
-            foreach (var file in this.MonitorTemporaryDirectory(temporaryFolderPath))
+            await Task.Run(() =>
             {
-                var dcmFile = DicomFile.Open(file);
-                DicomTagContents dicomTagContents = new DicomTagContents
-                {
-                    //ここに判定するタグを追加
-                    PatientId = dcmFile.Dataset.Get<string>(DicomTag.PatientID)
-                };
+                //ファイルのコピー（フォルダごとTemporaryへ）
+                this.CopyDirectory(targetFolderPath, temporaryFolderPath);
 
-                ValidateContents validateContents = new ValidateContents();
-                if (validateContents.HasErrorTag(dicomTagContents))
+                //ファイル読込
+                //Validate
+                foreach (var file in this.MonitorTemporaryDirectory(temporaryFolderPath))
                 {
-                    //引っかかったものをcsv出力
-                    csvFileMaker.RecordErrorFiles(dicomTagContents);
+                    if (main.Cancellation.IsCancellationRequested)
+                    {
+                        main.Cancellation.Token.ThrowIfCancellationRequested();
+                    }
+
+                    var dcmFile = DicomFile.Open(file);
+                    DicomTagContents dicomTagContents = new DicomTagContents
+                    {
+                        //ここに判定するタグを追加
+                        PatientId = dcmFile.Dataset.Get<string>(DicomTag.PatientID)
+                    };
+
+                    ValidateContents validateContents = new ValidateContents();
+                    if (validateContents.HasErrorTag(dicomTagContents))
+                    {
+                        //引っかかったものをcsv出力
+                        csvFileMaker.RecordErrorFiles(dicomTagContents);
+                    }
                 }
-            }
+            });
         }
 
         private void CopyDirectory(string sourceDirName, string destDirName)
