@@ -5,8 +5,6 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\DicomTagChecker.Temp.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\DicomTagChecker.Temp.pdb
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp.csprojAssemblyReference.cache
-D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\MainWindow.baml
-D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\App.g.cs
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp_MarkupCompile.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\DicomTagChecker.Temp.g.resources
@@ -28,3 +26,5 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\runtimes\win7-x86\native\sni.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard1.3\System.Data.SqlClient.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard1.3\System.Data.SqlClient.dll
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\View\MainWindow.g.cs
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Temp\obj\Debug\netcoreapp3.1\View\MainWindow.baml

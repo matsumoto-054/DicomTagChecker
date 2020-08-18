@@ -1,0 +1,164 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\DicomTagUnitTest.csproj": {}
+  },
+  "projects": {
+    "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj",
+        "projectName": "DicomTagChecker.Temp",
+        "projectPath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj",
+        "packagesPath": "C:\\Users\\matsu\\.nuget\\packages\\",
+        "outputPath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\matsu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://www.myget.org/F/prism": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft-WindowsAPICodePack-Shell": {
+              "target": "Package",
+              "version": "[1.1.4, )"
+            },
+            "fo-dicom": {
+              "target": "Package",
+              "version": "[4.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\DicomTagUnitTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\DicomTagUnitTest.csproj",
+        "projectName": "DicomTagUnitTest",
+        "projectPath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\DicomTagUnitTest.csproj",
+        "packagesPath": "C:\\Users\\matsu\\.nuget\\packages\\",
+        "outputPath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\matsu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://www.myget.org/F/prism": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj": {
+                "projectPath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

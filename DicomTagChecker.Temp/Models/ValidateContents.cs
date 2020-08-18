@@ -18,9 +18,9 @@ namespace DicomTagChecker.Temp
             return true;
         }
 
-        private void ValidatePatientId(string patientId)
+        public void ValidatePatientId(string patientId)
         {
-            if (string.IsNullOrWhiteSpace(patientId) || !Regex.IsMatch(patientId, "^[0-9a-zA-Z-]$"))
+            if (string.IsNullOrWhiteSpace(patientId) || !Regex.IsMatch(patientId, "^[0-9a-zA-Z-]{1,32}$"))
             {
                 throw new InvalidPatientIdException("DICOMタグエラー：PatientID");
             }
