@@ -2,6 +2,7 @@
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace DicomTagChecker.Temp
@@ -49,6 +50,7 @@ namespace DicomTagChecker.Temp
             StartButton.IsEnabled = false;
             CancelButton.IsEnabled = true;
 
+            string targetFolder = FolderPathTextBox.Text;
             string temporaryFolder = Settings.Default.TemporaryFolder;
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
@@ -58,9 +60,9 @@ namespace DicomTagChecker.Temp
             try
             {
                 DicomFileReader dicomFileReader = new DicomFileReader();
-                await dicomFileReader.ReadDicomFilesAsync(FolderPathTextBox.Text, temporaryFolder);
+                await Task.Run(() => dicomFileReader.ReadDicomFilesAsync(targetFolder, temporaryFolder));
             }
-            catch(OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
                 isReading = false;
@@ -69,7 +71,6 @@ namespace DicomTagChecker.Temp
             catch (Exception ex)
             {
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
-                return;
             }
 
             this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");

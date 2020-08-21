@@ -37,7 +37,7 @@ namespace DicomTagChecker.Temp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".dcm")]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.dcm")]
         public string FilePattern {
             get {
                 return ((string)(this["FilePattern"]));
