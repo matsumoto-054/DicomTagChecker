@@ -16,7 +16,7 @@ namespace DicomTagChecker.Temp
         private LogWriter logWriter = new LogWriter();
         private bool isReading = false;
 
-        public CancellationTokenSource Cancellation;
+        public CancellationTokenSource cancellation;
 
         public MainWindow()
         {
@@ -47,6 +47,9 @@ namespace DicomTagChecker.Temp
                 return;
             }
 
+            cancellation = new CancellationTokenSource();
+            var cancelToken = cancellation.Token;
+
             StartButton.IsEnabled = false;
             CancelButton.IsEnabled = true;
 
@@ -60,7 +63,11 @@ namespace DicomTagChecker.Temp
             try
             {
                 DicomFileReader dicomFileReader = new DicomFileReader();
-                await Task.Run(() => dicomFileReader.ReadDicomFilesAsync(targetFolder, temporaryFolder));
+                await Task.Run(() => dicomFileReader.ReadDicomFilesAsync(targetFolder, temporaryFolder, cancelToken));
+
+                this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
+                isReading = false;
+                StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
             }
             catch (OperationCanceledException)
             {
@@ -73,9 +80,8 @@ namespace DicomTagChecker.Temp
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
             }
 
-            this.LogDataGrid.ItemsSource = logWriter.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
-            isReading = false;
-            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+            cancellation.Dispose();
+            cancellation = null;
 
             StartButton.IsEnabled = true;
             CancelButton.IsEnabled = false;
@@ -88,9 +94,9 @@ namespace DicomTagChecker.Temp
                 var result = MessageBox.Show("取り込み処理を中断しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
                 if (result == MessageBoxResult.Yes)
                 {
-                    if (Cancellation != null)
+                    if (cancellation != null)
                     {
-                        Cancellation.Cancel();
+                        cancellation?.Cancel();
                     }
                 }
             }

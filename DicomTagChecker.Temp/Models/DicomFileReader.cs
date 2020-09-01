@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DicomTagChecker.Temp
@@ -13,11 +14,10 @@ namespace DicomTagChecker.Temp
         private string filePattern = Settings.Default.FilePattern;
         private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
-        public Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath)
+        public Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath, CancellationToken cancellationToken)
         {
             var tasks = new List<Task>();
-
-            MainWindow main = new MainWindow();
+            var errorContents = new List<ValidateDicomTagContents>();
 
             //ファイルのコピー（フォルダごとTemporaryへ）
             this.CopyDirectory(targetFolderPath, temporaryFolderPath);
@@ -28,10 +28,7 @@ namespace DicomTagChecker.Temp
             {
                 var task = Task.Run(() =>
                 {
-                    if (main.Cancellation.IsCancellationRequested)
-                    {
-                        main.Cancellation.Token.ThrowIfCancellationRequested();
-                    }
+                    cancellationToken.ThrowIfCancellationRequested();
 
                     var dcmFile = DicomFile.Open(file);
                     DicomTagContents dicomTagContents = new DicomTagContents
