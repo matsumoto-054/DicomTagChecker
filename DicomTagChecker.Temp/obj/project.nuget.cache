@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9AT+aIqPk/zRaRt0oW8BgZigxuKOSCpY+LDdZzU4ZgLI0ajzuKFv5DmvL+p4D8jwGGzWKMZuGH1azO5vDWCVyg==",
+  "dgSpecHash": "U+DzszJqa1MBxWpuVRfUBFTwRp005/n32eRG36vaOr6oqxo86QhdUts+vHt0XGnWFGSlN7CIMyn8r6sVhHJP4Q==",
   "success": true,
   "projectFilePath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Temp\\DicomTagChecker.Temp.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\matsu\\.nuget\\packages\\fo-dicom.netcore\\4.0.5\\fo-dicom.netcore.4.0.5.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft-windowsapicodepack-core\\1.1.4\\microsoft-windowsapicodepack-core.1.1.4.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft-windowsapicodepack-shell\\1.1.4\\microsoft-windowsapicodepack-shell.1.1.4.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.1\\microsoft.netcore.platforms.3.1.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
@@ -90,7 +90,7 @@
     "C:\\Users\\matsu\\.nuget\\packages\\system.security.principal\\4.3.0\\system.security.principal.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.security.principal.windows\\4.3.0\\system.security.principal.windows.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.codepages\\4.3.0\\system.text.encoding.codepages.4.3.0.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.codepages\\4.7.1\\system.text.encoding.codepages.4.7.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",

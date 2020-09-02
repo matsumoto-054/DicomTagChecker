@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3YNf+JamednORxw4NvZc+ENTNQkCxO9ZfEfneS825vuhPlnHbcwY14b9WE4Zv/lAB7tCFBVjVhIpm2uaPB8OFg==",
+  "dgSpecHash": "qk/mkOpNs2vq44gWH45hlvynt+l2GJrJn6IKj30xs97kWnd/alhRfOZsykIN6NU61FU0jvmXfugzTtw8th8xFA==",
   "success": true,
   "projectFilePath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagUnitTest\\DicomTagUnitTest.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.1\\microsoft.netcore.platforms.3.1.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.testplatform.objectmodel\\16.5.0\\microsoft.testplatform.objectmodel.16.5.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\microsoft.testplatform.testhost\\16.5.0\\microsoft.testplatform.testhost.16.5.0.nupkg.sha512",
@@ -103,7 +103,7 @@
     "C:\\Users\\matsu\\.nuget\\packages\\system.security.principal\\4.3.0\\system.security.principal.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.security.principal.windows\\4.3.0\\system.security.principal.windows.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.codepages\\4.3.0\\system.text.encoding.codepages.4.3.0.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.codepages\\4.7.1\\system.text.encoding.codepages.4.7.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",

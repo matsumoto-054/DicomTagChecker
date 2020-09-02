@@ -43,6 +43,10 @@
               "target": "Package",
               "version": "[1.1.4, )"
             },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.7.1, )"
+            },
             "fo-dicom": {
               "target": "Package",
               "version": "[4.0.5, )"
@@ -126,6 +130,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.7.1, )"
             },
             "coverlet.collector": {
               "target": "Package",

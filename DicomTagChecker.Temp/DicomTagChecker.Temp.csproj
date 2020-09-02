@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="fo-dicom" Version="4.0.5" />
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>

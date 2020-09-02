@@ -43,6 +43,10 @@
               "target": "Package",
               "version": "[1.1.4, )"
             },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.7.1, )"
+            },
             "fo-dicom": {
               "target": "Package",
               "version": "[4.0.5, )"

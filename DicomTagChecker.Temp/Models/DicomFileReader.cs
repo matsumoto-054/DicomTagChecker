@@ -1,4 +1,5 @@
 ﻿using Dicom;
+using DicomTagChecker.Temp.Models;
 using DicomTagChecker.Temp.Properties;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DicomTagChecker.Temp
         public Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath, CancellationToken cancellationToken)
         {
             var tasks = new List<Task>();
-            var errorContents = new List<ValidateDicomTagContents>();
+            var error = new List<CsvFileContents>();
 
             //ファイルのコピー（フォルダごとTemporaryへ）
             this.CopyDirectory(targetFolderPath, temporaryFolderPath);
@@ -40,13 +41,16 @@ namespace DicomTagChecker.Temp
                     ValidateDicomTagContents validateContents = new ValidateDicomTagContents();
                     if (validateContents.HasErrorTag(dicomTagContents))
                     {
-                        //引っかかったものをcsv出力
-                        csvFileMaker.RecordErrorFiles(dicomTagContents);
+                        //csv出力する内容をListに用意
+                        csvFileMaker.AddCsvContents(file, dicomTagContents, error);
                     }
                 });
 
                 tasks.Add(task);
             }
+
+            //csv出力
+            csvFileMaker.RecordErrorFiles(error);
 
             return Task.WhenAll(tasks);
         }

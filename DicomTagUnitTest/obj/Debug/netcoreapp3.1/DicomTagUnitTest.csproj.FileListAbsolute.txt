@@ -100,7 +100,6 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.csprojAssemblyReference.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.AssemblyInfoInputs.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.AssemblyInfo.cs
-D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.csproj.CoreCompileInputs.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.csproj.CopyComplete
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.pdb
