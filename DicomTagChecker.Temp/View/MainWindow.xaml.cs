@@ -78,6 +78,10 @@ namespace DicomTagChecker.Temp
             catch (Exception ex)
             {
                 this.LogDataGrid.ItemsSource = logWriter.WriteLog("エラー", ex.Message);
+
+                isReading = false;
+                StartButton.IsEnabled = true;
+                CancelButton.IsEnabled = false;
             }
 
             cancellation.Dispose();
