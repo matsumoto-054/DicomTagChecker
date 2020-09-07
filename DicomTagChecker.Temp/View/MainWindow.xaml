@@ -32,21 +32,28 @@
             Height="20"
             Width="40"
             Margin="10,0,500,235" />
-        <DataGrid
+        <ListView
             x:Name="LogDataGrid"
-            ItemsSource="{Binding Path=LogContents}"
-            AutoGenerateColumns="False"
-            HeadersVisibility="Column"
+            ItemsSource="{Binding LogContents}"
             Grid.Row="1"
             Height="160"
             Width="530"
-            Margin="0,5,0,60">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="日時" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="状態" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="処理" Binding="{Binding Contents}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            Margin="0,5,0,60"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.CanContentScroll="False">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="日時" DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Header="状態" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="処理" DisplayMemberBinding="{Binding Contents}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button
             x:Name="StartButton"
             Content="取込開始"

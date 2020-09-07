@@ -28,7 +28,7 @@ namespace DicomTagChecker.Temp
 
             List<CsvFileContents> csvData = new List<CsvFileContents>();
 
-            //Shift-JISを使うのに必要とのこと
+            //Shift-JISを使うのに必要とのこと（Shift-JISである必要性はない？）
             //https://qiita.com/sugasaki/items/0639ea9ca07f1ba7a9e0
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
