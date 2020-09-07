@@ -15,6 +15,13 @@ namespace DicomTagChecker.Temp
         private string filePattern = Settings.Default.FilePattern;
         private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
+        /// <summary>
+        /// 非同期によるDicomファイルの読み込み
+        /// </summary>
+        /// <param name="targetFolderPath"></param>
+        /// <param name="temporaryFolderPath"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task ReadDicomFilesAsync(string targetFolderPath, string temporaryFolderPath, CancellationToken cancellationToken)
         {
             var tasks = new List<Task>();
@@ -29,6 +36,7 @@ namespace DicomTagChecker.Temp
             {
                 var task = Task.Run(() =>
                 {
+                    //キャンセルされたかどうかはこのタイミングで検知
                     cancellationToken.ThrowIfCancellationRequested();
 
                     var dcmFile = DicomFile.Open(file);
@@ -55,6 +63,11 @@ namespace DicomTagChecker.Temp
             return Task.WhenAll(tasks);
         }
 
+        /// <summary>
+        /// 選択したフォルダの中身をテンポラリーフォルダへコピー
+        /// </summary>
+        /// <param name="sourceDirName"></param>
+        /// <param name="destDirName"></param>
         private void CopyDirectory(string sourceDirName, string destDirName)
         {
             //コピー先のディレクトリがないときは作る
@@ -86,6 +99,11 @@ namespace DicomTagChecker.Temp
             }
         }
 
+        /// <summary>
+        /// 拡張子が.dcmのファイルのみを取得
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <returns></returns>
         private string[] MonitorTemporaryDirectory(string folder)
         {
             string extention = Path.GetExtension(filePattern);

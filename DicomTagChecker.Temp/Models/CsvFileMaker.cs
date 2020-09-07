@@ -11,6 +11,12 @@ namespace DicomTagChecker.Temp
     {
         CsvFileContents csvFileContents = new CsvFileContents();
 
+        /// <summary>
+        /// csv出力する項目を用意
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="dicomTagContents"></param>
+        /// <param name="error"></param>
         public void AddCsvContents(string fileName, DicomTagContents dicomTagContents, List<CsvFileContents> error)
         {
             csvFileContents.FileName = fileName;
@@ -19,6 +25,10 @@ namespace DicomTagChecker.Temp
             error.Add(csvFileContents);
         }
 
+        /// <summary>
+        /// エラー内容の書き出し
+        /// </summary>
+        /// <param name="errorContents"></param>
         public void RecordErrorFiles(List<CsvFileContents> errorContents)
         {
             //書き出すのはファイル名、判定したタグ

@@ -4,10 +4,12 @@ namespace DicomTagChecker.Temp
 {
     public class ValidateDicomTagContents
     {
+        //DicomタグのValidationチェック
         public bool HasErrorTag(DicomTagContents dicomTagContents)
         {
             try
             {
+                //Validateするタグを順次追加
                 this.ValidatePatientId(dicomTagContents.PatientId);
             }
             catch

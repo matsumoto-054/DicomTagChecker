@@ -32,9 +32,15 @@ namespace DicomTagChecker.Temp
             CancelButton.IsEnabled = false;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
 
+            //ListViewの値が変わったときのイベント
             logContents.CollectionChanged += items_CollectionChanged;
         }
 
+        /// <summary>
+        /// フォルダの選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new CommonOpenFileDialog();
@@ -48,6 +54,12 @@ namespace DicomTagChecker.Temp
             }
         }
 
+        /// <summary>
+        /// 取込開始ボタン
+        /// 非同期によるタグ判定処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(FolderPathTextBox.Text))
@@ -67,6 +79,7 @@ namespace DicomTagChecker.Temp
 
             this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
 
+            //取り込み処理中は、マウスカーソルを矢印+待機にする。
             Cursor = Cursors.AppStarting;
             isReading = true;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
@@ -82,6 +95,7 @@ namespace DicomTagChecker.Temp
             }
             catch (OperationCanceledException)
             {
+                //キャンセルボタンによる取込中断
                 this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
 
                 Cursor = Cursors.Arrow;
@@ -90,6 +104,7 @@ namespace DicomTagChecker.Temp
             }
             catch (Exception ex)
             {
+                //取込中に例外が発生したら、中断される
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", ex.Message);
 
                 Cursor = Cursors.Arrow;
@@ -106,6 +121,12 @@ namespace DicomTagChecker.Temp
             CancelButton.IsEnabled = false;
         }
 
+        /// <summary>
+        /// ログの内容
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="contents"></param>
+        /// <returns></returns>
         private ObservableCollection<LogContents> WriteLog(string status, string contents)
         {
             log.Date = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
@@ -117,12 +138,21 @@ namespace DicomTagChecker.Temp
             return logContents;
         }
 
+        /// <summary>
+        /// ListViewの値が変わったとき（＝ログが追記されたとき）のイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             var view = LogDataGrid.View as GridView;
             this.AutoResizeGridViewColumns(view);
         }
 
+        /// <summary>
+        /// ログの長さによって、ListViewの幅を自動調整
+        /// </summary>
+        /// <param name="view"></param>
         private void AutoResizeGridViewColumns(GridView view)
         {
             if (view == null || view.Columns.Count < 1) return;
@@ -135,6 +165,11 @@ namespace DicomTagChecker.Temp
             }
         }
 
+        /// <summary>
+        /// キャンセルボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             if (isReading)
@@ -150,15 +185,26 @@ namespace DicomTagChecker.Temp
             }
             else
             {
+                //取り込み処理していないときはキャンセルボタンを押せないので、ここに来ることはないが一応...
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", $"処理未実行");
             }
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 終了ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TerminateButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// アプリを閉じるときに取り込み処理中だった場合、ダイアログを表示して確認
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (isReading)
