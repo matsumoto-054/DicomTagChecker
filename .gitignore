@@ -2,3 +2,5 @@
 /DicomTagChecker.Temp/obj/
 .vs
 TestResults
+/DicomTagUnitTest/bin/
+/DicomTagUnitTest/obj/
