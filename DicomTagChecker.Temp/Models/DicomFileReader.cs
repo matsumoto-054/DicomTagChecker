@@ -1,6 +1,7 @@
 ﻿using Dicom;
 using DicomTagChecker.Temp.Models;
 using DicomTagChecker.Temp.Properties;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,8 @@ namespace DicomTagChecker.Temp
 {
     public class DicomFileReader
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private string filePattern = Settings.Default.FilePattern;
         private CsvFileMaker csvFileMaker = new CsvFileMaker();
 
@@ -29,6 +32,7 @@ namespace DicomTagChecker.Temp
 
             //ファイルのコピー（フォルダごとTemporaryへ）
             this.CopyDirectory(targetFolderPath, temporaryFolderPath);
+            logger.Info($"'{temporaryFolderPath}'へファイルのコピー完了");
 
             //ファイル読込
             //Validate
@@ -38,6 +42,7 @@ namespace DicomTagChecker.Temp
                 {
                     //キャンセルされたかどうかはこのタイミングで検知
                     cancellationToken.ThrowIfCancellationRequested();
+                    logger.Info("キャンセル通知発生");
 
                     var dcmFile = DicomFile.Open(file);
                     DicomTagContents dicomTagContents = new DicomTagContents

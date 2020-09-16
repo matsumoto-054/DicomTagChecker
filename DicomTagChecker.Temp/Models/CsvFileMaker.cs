@@ -33,8 +33,9 @@ namespace DicomTagChecker.Temp
         {
             //書き出すのはファイル名、判定したタグ
             string fileName = $"{DateTime.Today.ToString("yyyyMMdd")}.csv";
-            string path = Settings.Default.TemporaryFolder;
-            string outputFolder = Path.Combine(path, fileName);
+            // Tempフォルダの1つ上の階層にcsvファイルを出力
+            string csvPath = Settings.Default.TemporaryFolder.Substring(0, Settings.Default.TemporaryFolder.LastIndexOf(@"\") + 1);
+            string outputFolder = Path.Combine(csvPath, fileName);
 
             List<CsvFileContents> csvData = new List<CsvFileContents>();
 

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TemporaryFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\UsTEC\DicomTagChecker</Value>
+      <Value Profile="(Default)">C:\UsTEC\DicomTagChecker\Temp</Value>
     </Setting>
     <Setting Name="FilePattern" Type="System.String" Scope="User">
       <Value Profile="(Default)">*.dcm</Value>

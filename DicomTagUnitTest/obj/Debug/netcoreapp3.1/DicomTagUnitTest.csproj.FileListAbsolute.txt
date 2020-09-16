@@ -104,3 +104,8 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.pdb
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.genruntimeconfig.cache
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\bin\Debug\netcoreapp3.1\NLog.dll
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\obj\Debug\netcoreapp3.1\DicomTagUnitTest.csproj.CoreCompileInputs.cache
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagUnitTest\bin\Debug\netcoreapp3.1\NLog.config

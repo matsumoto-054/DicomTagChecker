@@ -33,13 +33,13 @@
           "lib/netstandard1.3/CSJ2K.dll": {}
         }
       },
-      "fo-dicom/4.0.5": {
+      "fo-dicom/4.0.6": {
         "type": "package",
         "dependencies": {
-          "fo-dicom.NetCore": "4.0.5"
+          "fo-dicom.NetCore": "4.0.6"
         }
       },
-      "fo-dicom.NetCore/4.0.5": {
+      "fo-dicom.NetCore/4.0.6": {
         "type": "package",
         "dependencies": {
           "CSJ2K": "3.0.0",
@@ -511,6 +511,39 @@
         },
         "runtime": {
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NLog/4.7.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NLog.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {}
+        }
+      },
+      "NLog.Config/4.7.4": {
+        "type": "package",
+        "dependencies": {
+          "NLog": "4.7.4",
+          "NLog.Schema": "4.7.4"
+        },
+        "contentFiles": {
+          "contentFiles/any/any/_._": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
+      "NLog.Schema/4.7.4": {
+        "type": "package",
+        "contentFiles": {
+          "contentFiles/any/any/_._": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
         }
       },
       "NuGet.Frameworks/5.0.0": {
@@ -2150,8 +2183,10 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Microsoft-WindowsAPICodePack-Shell": "1.1.4",
+          "NLog": "4.7.4",
+          "NLog.Config": "4.7.4",
           "System.Text.Encoding.CodePages": "4.7.1",
-          "fo-dicom": "4.0.5"
+          "fo-dicom": "4.0.6"
         },
         "compile": {
           "bin/placeholder/DicomTagChecker.Temp.dll": {}
@@ -2249,27 +2284,27 @@
         "lib/wp8/CSJ2K.pdb"
       ]
     },
-    "fo-dicom/4.0.5": {
-      "sha512": "+UnAddNCp6RpdQhDq/ahN2xRKW5I58qoXcamhcYD5k3J3eZdZzNiaY71tKzDnTlweb3E5UNnBGGhsO1U6FSAjQ==",
+    "fo-dicom/4.0.6": {
+      "sha512": "PASXAyTZOatGXnyQSZAPBEfW+/oDbiv662exNQKx+QvGowQ0GbqaYHxPxXcXoYc0UCAeIDaTf9O8/rSrcgvo9g==",
       "type": "package",
-      "path": "fo-dicom/4.0.5",
+      "path": "fo-dicom/4.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ChangeLog.md",
         "README.md",
-        "fo-dicom.4.0.5.nupkg.sha512",
+        "fo-dicom.4.0.6.nupkg.sha512",
         "fo-dicom.nuspec"
       ]
     },
-    "fo-dicom.NetCore/4.0.5": {
-      "sha512": "u88CfKMK8URa3uaff5iiKn0eLkaoVdboCdxRWFDb1mugVsxHWz0MC7nM61/9LhVViHCWC168wqRttyKxZkp68A==",
+    "fo-dicom.NetCore/4.0.6": {
+      "sha512": "TNO2mpbYnZFpgRwQLJLcp1rT37atSPtXYc3UCxi8D9SjUn5Hy1ntRZMCF+F5WK3UxR8i9BPX37eR7xYo/WYWyg==",
       "type": "package",
-      "path": "fo-dicom.netcore/4.0.5",
+      "path": "fo-dicom.netcore/4.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "fo-dicom.netcore.4.0.5.nupkg.sha512",
+        "fo-dicom.netcore.4.0.6.nupkg.sha512",
         "fo-dicom.netcore.nuspec",
         "lib/netstandard1.3/Dicom.Core.dll",
         "lib/netstandard1.3/Dicom.Core.pdb",
@@ -2931,6 +2966,67 @@
         "newtonsoft.json.9.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
+      ]
+    },
+    "NLog/4.7.4": {
+      "sha512": "gSGX/ur0P3jp17H37HW7ycXR6L1578tQbilf4HLX1t2viCDFgtwEsfHMPf0/jcuf7/qqGgoU/vKgyQ9hzxuOEQ==",
+      "type": "package",
+      "path": "nlog/4.7.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/monoandroid44/NLog.dll",
+        "lib/monoandroid44/NLog.xml",
+        "lib/net35/NLog.dll",
+        "lib/net35/NLog.xml",
+        "lib/net40-client/NLog.dll",
+        "lib/net40-client/NLog.xml",
+        "lib/net45/NLog.dll",
+        "lib/net45/NLog.xml",
+        "lib/netstandard1.3/NLog.dll",
+        "lib/netstandard1.3/NLog.xml",
+        "lib/netstandard1.5/NLog.dll",
+        "lib/netstandard1.5/NLog.xml",
+        "lib/netstandard2.0/NLog.dll",
+        "lib/netstandard2.0/NLog.xml",
+        "lib/sl4/NLog.dll",
+        "lib/sl4/NLog.xml",
+        "lib/sl5/NLog.dll",
+        "lib/sl5/NLog.xml",
+        "lib/wp8/NLog.dll",
+        "lib/wp8/NLog.xml",
+        "lib/xamarinios10/NLog.dll",
+        "lib/xamarinios10/NLog.xml",
+        "nlog.4.7.4.nupkg.sha512",
+        "nlog.nuspec"
+      ]
+    },
+    "NLog.Config/4.7.4": {
+      "sha512": "6S4bdzv7gjGvdXxPFaPSvehIH2/c5dsjHXRfyTZUZ1FSxDzYXW5eWLuyCvNTYOef842uPgQBS8Ahi0JgZtWRLA==",
+      "type": "package",
+      "path": "nlog.config/4.7.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/NLog.config",
+        "contentFiles/any/any/NLog.config",
+        "nlog.config.4.7.4.nupkg.sha512",
+        "nlog.config.nuspec",
+        "tools/Install.ps1"
+      ]
+    },
+    "NLog.Schema/4.7.4": {
+      "sha512": "HikJv+HJHbpjWHSykV5rd6QEIAnC4gZEoHTkJjeyxICTyzW6BDZWv4tosdvdHZ+CJAphiAcWE9d6Mszx3mwO6Q==",
+      "type": "package",
+      "path": "nlog.schema/4.7.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/NLog.xsd",
+        "contentFiles/any/any/NLog.xsd",
+        "nlog.schema.4.7.4.nupkg.sha512",
+        "nlog.schema.nuspec"
       ]
     },
     "NuGet.Frameworks/5.0.0": {

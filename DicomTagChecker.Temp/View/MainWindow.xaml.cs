@@ -1,5 +1,6 @@
 ﻿using DicomTagChecker.Temp.Properties;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using NLog;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -16,6 +17,8 @@ namespace DicomTagChecker.Temp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private StatusBarController statusBarController = new StatusBarController();
 
         private ObservableCollection<LogContents> logContents = new ObservableCollection<LogContents>();
@@ -28,6 +31,8 @@ namespace DicomTagChecker.Temp
         public MainWindow()
         {
             InitializeComponent();
+
+            logger.Info("アプリケーションの起動");
 
             CancelButton.IsEnabled = false;
             StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
@@ -51,6 +56,7 @@ namespace DicomTagChecker.Temp
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 FolderPathTextBox.Text = dialog.FileName;
+                logger.Info($"フォルダ'{FolderPathTextBox.Text}'を監視");
             }
         }
 
@@ -64,7 +70,9 @@ namespace DicomTagChecker.Temp
         {
             if (String.IsNullOrWhiteSpace(FolderPathTextBox.Text))
             {
-                this.LogDataGrid.ItemsSource = this.WriteLog("エラー", $"フォルダ未選択");
+                this.LogDataGrid.ItemsSource = this.WriteLog("エラー", "フォルダ未選択");
+                logger.Warn("フォルダ未選択");
+
                 return;
             }
 
@@ -78,6 +86,7 @@ namespace DicomTagChecker.Temp
             string temporaryFolder = Settings.Default.TemporaryFolder;
 
             this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
+            logger.Info("dcmファイルの取込開始");
 
             //取り込み処理中は、マウスカーソルを矢印+待機にする。
             Cursor = Cursors.AppStarting;
@@ -90,6 +99,7 @@ namespace DicomTagChecker.Temp
                 await Task.Run(() => dicomFileReader.ReadDicomFilesAsync(targetFolder, temporaryFolder, cancelToken));
 
                 this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
+                logger.Info("dcmファイルの取得完了");
                 isReading = false;
                 StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
             }
@@ -97,6 +107,7 @@ namespace DicomTagChecker.Temp
             {
                 //キャンセルボタンによる取込中断
                 this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                logger.Info("dcmファイルの取得を中断");
 
                 Cursor = Cursors.Arrow;
                 isReading = false;
@@ -106,6 +117,7 @@ namespace DicomTagChecker.Temp
             {
                 //取込中に例外が発生したら、中断される
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", ex.Message);
+                logger.Error(ex.Message);
 
                 Cursor = Cursors.Arrow;
                 isReading = false;
@@ -197,6 +209,7 @@ namespace DicomTagChecker.Temp
         /// <param name="e"></param>
         private void TerminateButton_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("アプリケーションの終了");
             this.Close();
         }
 
@@ -213,6 +226,7 @@ namespace DicomTagChecker.Temp
                 if (result == MessageBoxResult.Yes)
                 {
                     this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
+                    logger.Info("dcmファイルの取得を中断");
                 }
                 else
                 {

@@ -6,9 +6,4 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
-  <ItemGroup>
-    <Page Update="View\MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
 </Project>

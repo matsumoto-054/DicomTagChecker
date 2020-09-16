@@ -25,7 +25,7 @@ namespace DicomTagChecker.Temp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\UsTEC\\DicomTagChecker")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\UsTEC\\DicomTagChecker\\Temp")]
         public string TemporaryFolder {
             get {
                 return ((string)(this["TemporaryFolder"]));

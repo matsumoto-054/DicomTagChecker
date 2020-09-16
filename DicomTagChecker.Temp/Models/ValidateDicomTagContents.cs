@@ -1,9 +1,12 @@
-﻿using System.Text.RegularExpressions;
+﻿using NLog;
+using System.Text.RegularExpressions;
 
 namespace DicomTagChecker.Temp
 {
     public class ValidateDicomTagContents
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         //DicomタグのValidationチェック
         public bool HasErrorTag(DicomTagContents dicomTagContents)
         {
@@ -28,7 +31,8 @@ namespace DicomTagChecker.Temp
         {
             if (string.IsNullOrWhiteSpace(patientId) || !Regex.IsMatch(patientId, "^[0-9a-zA-Z-]{1,32}$"))
             {
-                throw new InvalidPatientIdException("DICOMタグエラー：PatientID");
+                logger.Info("不正なPatientId");
+                throw new InvalidPatientIdException("DICOMタグエラー：PatientId");
             }
         }
     }

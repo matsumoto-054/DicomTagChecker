@@ -9,13 +9,17 @@
       "DicomTagChecker.Temp/1.0.0": {
         "dependencies": {
           "Microsoft-WindowsAPICodePack-Shell": "1.1.4",
+          "NLog": "4.7.4",
+          "NLog.Config": "4.7.4",
           "System.Text.Encoding.CodePages": "4.7.1",
-          "fo-dicom": "4.0.5"
+          "coverlet.collector": "1.3.0",
+          "fo-dicom": "4.0.6"
         },
         "runtime": {
           "DicomTagChecker.Temp.dll": {}
         }
       },
+      "coverlet.collector/1.3.0": {},
       "cscharls/0.1.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -39,12 +43,12 @@
           }
         }
       },
-      "fo-dicom/4.0.5": {
+      "fo-dicom/4.0.6": {
         "dependencies": {
-          "fo-dicom.NetCore": "4.0.5"
+          "fo-dicom.NetCore": "4.0.6"
         }
       },
-      "fo-dicom.NetCore/4.0.5": {
+      "fo-dicom.NetCore/4.0.6": {
         "dependencies": {
           "CSJ2K": "3.0.0",
           "NETStandard.Library": "1.6.1",
@@ -60,8 +64,8 @@
         },
         "runtime": {
           "lib/netstandard1.3/Dicom.Core.dll": {
-            "assemblyVersion": "4.0.4.0",
-            "fileVersion": "4.0.4.0"
+            "assemblyVersion": "4.0.6.0",
+            "fileVersion": "4.0.6.0"
           }
         }
       },
@@ -141,6 +145,21 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
+      "NLog/4.7.4": {
+        "runtime": {
+          "lib/netstandard2.0/NLog.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.7.4.12037"
+          }
+        }
+      },
+      "NLog.Config/4.7.4": {
+        "dependencies": {
+          "NLog": "4.7.4",
+          "NLog.Schema": "4.7.4"
+        }
+      },
+      "NLog.Schema/4.7.4": {},
       "Portable.LibJpeg.NET/1.5.1.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
@@ -1056,6 +1075,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "coverlet.collector/1.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t8pnf5SX2ya0RX4vjoxsbhDMQCZJcpPun2neHKJ4FouMmObylo25FvoOydvf3Bl+l+IzWw7u2vjEeCBHnleB9g==",
+      "path": "coverlet.collector/1.3.0",
+      "hashPath": "coverlet.collector.1.3.0.nupkg.sha512"
+    },
     "cscharls/0.1.1": {
       "type": "package",
       "serviceable": true,
@@ -1070,19 +1096,19 @@
       "path": "csj2k/3.0.0",
       "hashPath": "csj2k.3.0.0.nupkg.sha512"
     },
-    "fo-dicom/4.0.5": {
+    "fo-dicom/4.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+UnAddNCp6RpdQhDq/ahN2xRKW5I58qoXcamhcYD5k3J3eZdZzNiaY71tKzDnTlweb3E5UNnBGGhsO1U6FSAjQ==",
-      "path": "fo-dicom/4.0.5",
-      "hashPath": "fo-dicom.4.0.5.nupkg.sha512"
+      "sha512": "sha512-PASXAyTZOatGXnyQSZAPBEfW+/oDbiv662exNQKx+QvGowQ0GbqaYHxPxXcXoYc0UCAeIDaTf9O8/rSrcgvo9g==",
+      "path": "fo-dicom/4.0.6",
+      "hashPath": "fo-dicom.4.0.6.nupkg.sha512"
     },
-    "fo-dicom.NetCore/4.0.5": {
+    "fo-dicom.NetCore/4.0.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-u88CfKMK8URa3uaff5iiKn0eLkaoVdboCdxRWFDb1mugVsxHWz0MC7nM61/9LhVViHCWC168wqRttyKxZkp68A==",
-      "path": "fo-dicom.netcore/4.0.5",
-      "hashPath": "fo-dicom.netcore.4.0.5.nupkg.sha512"
+      "sha512": "sha512-TNO2mpbYnZFpgRwQLJLcp1rT37atSPtXYc3UCxi8D9SjUn5Hy1ntRZMCF+F5WK3UxR8i9BPX37eR7xYo/WYWyg==",
+      "path": "fo-dicom.netcore/4.0.6",
+      "hashPath": "fo-dicom.netcore.4.0.6.nupkg.sha512"
     },
     "Microsoft-WindowsAPICodePack-Core/1.1.4": {
       "type": "package",
@@ -1125,6 +1151,27 @@
       "sha512": "sha512-WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
+    },
+    "NLog/4.7.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gSGX/ur0P3jp17H37HW7ycXR6L1578tQbilf4HLX1t2viCDFgtwEsfHMPf0/jcuf7/qqGgoU/vKgyQ9hzxuOEQ==",
+      "path": "nlog/4.7.4",
+      "hashPath": "nlog.4.7.4.nupkg.sha512"
+    },
+    "NLog.Config/4.7.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6S4bdzv7gjGvdXxPFaPSvehIH2/c5dsjHXRfyTZUZ1FSxDzYXW5eWLuyCvNTYOef842uPgQBS8Ahi0JgZtWRLA==",
+      "path": "nlog.config/4.7.4",
+      "hashPath": "nlog.config.4.7.4.nupkg.sha512"
+    },
+    "NLog.Schema/4.7.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HikJv+HJHbpjWHSykV5rd6QEIAnC4gZEoHTkJjeyxICTyzW6BDZWv4tosdvdHZ+CJAphiAcWE9d6Mszx3mwO6Q==",
+      "path": "nlog.schema/4.7.4",
+      "hashPath": "nlog.schema.4.7.4.nupkg.sha512"
     },
     "Portable.LibJpeg.NET/1.5.1.1": {
       "type": "package",
