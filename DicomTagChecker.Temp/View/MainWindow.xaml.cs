@@ -19,8 +19,6 @@ namespace DicomTagChecker.Temp
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private StatusBarController statusBarController = new StatusBarController();
-
         private ObservableCollection<LogContents> logContents = new ObservableCollection<LogContents>();
         private LogContents log = new LogContents();
 
@@ -35,7 +33,7 @@ namespace DicomTagChecker.Temp
             logger.Info("アプリケーションの起動");
 
             CancelButton.IsEnabled = false;
-            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+            StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
             //ListViewの値が変わったときのイベント
             logContents.CollectionChanged += items_CollectionChanged;
@@ -91,7 +89,7 @@ namespace DicomTagChecker.Temp
             //取り込み処理中は、マウスカーソルを矢印+待機にする。
             Cursor = Cursors.AppStarting;
             isReading = true;
-            StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+            StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
             try
             {
@@ -101,7 +99,7 @@ namespace DicomTagChecker.Temp
                 this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
                 logger.Info("dcmファイルの取得完了");
                 isReading = false;
-                StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+                StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
             catch (OperationCanceledException)
             {
@@ -111,7 +109,7 @@ namespace DicomTagChecker.Temp
 
                 Cursor = Cursors.Arrow;
                 isReading = false;
-                StatusBarLabel.Content = statusBarController.ChangeStatusBar(isReading);
+                StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
             catch (Exception ex)
             {
@@ -211,6 +209,16 @@ namespace DicomTagChecker.Temp
         {
             logger.Info("アプリケーションの終了");
             this.Close();
+        }
+
+        /// <summary>
+        /// ステータスバーの表示を変更
+        /// </summary>
+        private string ChangeStatusBar(bool isReading)
+        {
+            string message = isReading ? "取込中" : "準備完了";
+
+            return message;
         }
 
         /// <summary>
