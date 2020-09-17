@@ -44,7 +44,7 @@ namespace DicomTagChecker.Temp
 
             logger.Info("アプリケーションの起動");
 
-            CancelButton.IsEnabled = false;
+            this.ChangeCursorAndEnableButtons(isReading);
             StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
             // ListViewの値が変わったときのイベント
@@ -86,17 +86,15 @@ namespace DicomTagChecker.Temp
                 return;
             }
 
-            StartButton.IsEnabled = false;
-            CancelButton.IsEnabled = true;
-
+            // 監視対象フォルダを変数に用意
             string targetFolderPath = FolderPathTextBox.Text;
 
-            this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを読込開始");
+            this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{targetFolderPath}\"内のdcmファイルを読込開始");
             logger.Info("dcmファイルの読込開始");
 
             // 読込処理中は、マウスカーソルを矢印+待機にする。
-            Cursor = Cursors.AppStarting;
             isReading = true;
+            this.ChangeCursorAndEnableButtons(isReading);
             StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
             var error = new List<CsvFileContents>();
@@ -133,8 +131,8 @@ namespace DicomTagChecker.Temp
                             this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込を中断");
                             logger.Info("dcmファイルの読込を中断");
 
-                            Cursor = Cursors.Arrow;
                             isReading = false;
+                            this.ChangeCursorAndEnableButtons(isReading);
                             StatusBarLabel.Content = this.ChangeStatusBar(isReading);
                         }
                     });
@@ -142,7 +140,9 @@ namespace DicomTagChecker.Temp
 
                 this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込が完了");
                 logger.Info("dcmファイルの読込完了");
+
                 isReading = false;
+                this.ChangeCursorAndEnableButtons(isReading);
                 StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
             catch (Exception ex)
@@ -151,15 +151,30 @@ namespace DicomTagChecker.Temp
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", ex.Message);
                 logger.Error(ex.Message);
 
-                Cursor = Cursors.Arrow;
                 isReading = false;
+                this.ChangeCursorAndEnableButtons(isReading);
+                StatusBarLabel.Content = this.ChangeStatusBar(isReading);
+            }
+        }
+
+        /// <summary>
+        /// 読込中かどうかでカーソルとボタンのアクティブを変更
+        /// </summary>
+        /// <param name="isReading"></param>
+        private void ChangeCursorAndEnableButtons(bool isReading)
+        {
+            if (isReading)
+            {
+                Cursor = Cursors.AppStarting;
+                StartButton.IsEnabled = false;
+                CancelButton.IsEnabled = true;
+            }
+            else
+            {
+                Cursor = Cursors.Arrow;
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
             }
-
-            Cursor = Cursors.Arrow;
-            StartButton.IsEnabled = true;
-            CancelButton.IsEnabled = false;
         }
 
         /// <summary>
