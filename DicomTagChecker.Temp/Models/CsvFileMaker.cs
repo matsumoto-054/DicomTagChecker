@@ -31,7 +31,7 @@ namespace DicomTagChecker.Temp
         /// <param name="errorContents"></param>
         public void RecordErrorFiles(List<CsvFileContents> errorContents)
         {
-            //書き出すのはファイル名、判定したタグ
+            // 書き出すのはファイル名、判定したタグ
             string fileName = $"{DateTime.Today.ToString("yyyyMMdd")}.csv";
             // Tempフォルダの1つ上の階層にcsvファイルを出力
             string csvPath = Settings.Default.TemporaryFolder.Substring(0, Settings.Default.TemporaryFolder.LastIndexOf(@"\") + 1);
@@ -39,8 +39,8 @@ namespace DicomTagChecker.Temp
 
             List<CsvFileContents> csvData = new List<CsvFileContents>();
 
-            //Shift-JISを使うのに必要とのこと（Shift-JISである必要性はない？）
-            //https://qiita.com/sugasaki/items/0639ea9ca07f1ba7a9e0
+            // Shift-JISを使うのに必要とのこと（Shift-JISである必要性はない？）
+            // https://qiita.com/sugasaki/items/0639ea9ca07f1ba7a9e0
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             using (StreamWriter sw = new StreamWriter(outputFolder, true, Encoding.GetEncoding("Shift-JIS")))

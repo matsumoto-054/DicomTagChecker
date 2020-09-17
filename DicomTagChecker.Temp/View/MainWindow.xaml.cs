@@ -1,9 +1,13 @@
-﻿using DicomTagChecker.Temp.Properties;
+﻿using DicomTagChecker.Temp.Models;
+using DicomTagChecker.Temp.Properties;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,14 +21,22 @@ namespace DicomTagChecker.Temp
     /// </summary>
     public partial class MainWindow : Window
     {
+        // logger
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        // テンポラリーフォルダ
+        private string temporaryFolderPath = Settings.Default.TemporaryFolder;
+
+        // ログ出力用
         private ObservableCollection<LogContents> logContents = new ObservableCollection<LogContents>();
+
         private LogContents log = new LogContents();
 
+        // 読込処理中かどうか
         private bool isReading = false;
 
-        public CancellationTokenSource cancellation;
+        // 処理キャンセル判定
+        public CancellationTokenSource cancellation = null;
 
         public MainWindow()
         {
@@ -35,7 +47,7 @@ namespace DicomTagChecker.Temp
             CancelButton.IsEnabled = false;
             StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
-            //ListViewの値が変わったときのイベント
+            // ListViewの値が変わったときのイベント
             logContents.CollectionChanged += items_CollectionChanged;
         }
 
@@ -59,7 +71,7 @@ namespace DicomTagChecker.Temp
         }
 
         /// <summary>
-        /// 取込開始ボタン
+        /// 読込開始ボタン
         /// 非同期によるタグ判定処理
         /// </summary>
         /// <param name="sender"></param>
@@ -74,46 +86,68 @@ namespace DicomTagChecker.Temp
                 return;
             }
 
-            cancellation = new CancellationTokenSource();
-            var cancelToken = cancellation.Token;
-
             StartButton.IsEnabled = false;
             CancelButton.IsEnabled = true;
 
-            string targetFolder = FolderPathTextBox.Text;
-            string temporaryFolder = Settings.Default.TemporaryFolder;
+            string targetFolderPath = FolderPathTextBox.Text;
 
-            this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを取得開始");
-            logger.Info("dcmファイルの取込開始");
+            this.LogDataGrid.ItemsSource = this.WriteLog("開始", $"\"{FolderPathTextBox.Text}\"内のdcmファイルを読込開始");
+            logger.Info("dcmファイルの読込開始");
 
-            //取り込み処理中は、マウスカーソルを矢印+待機にする。
+            // 読込処理中は、マウスカーソルを矢印+待機にする。
             Cursor = Cursors.AppStarting;
             isReading = true;
             StatusBarLabel.Content = this.ChangeStatusBar(isReading);
 
+            var error = new List<CsvFileContents>();
+
             try
             {
-                DicomFileReader dicomFileReader = new DicomFileReader();
-                await Task.Run(() => dicomFileReader.ReadDicomFilesAsync(targetFolder, temporaryFolder, cancelToken));
+                // ファイルのコピー（フォルダごとTemporaryへ）
+                this.CopyDirectory(targetFolderPath, temporaryFolderPath);
+                logger.Info($"'{temporaryFolderPath}'へファイルのコピー完了");
 
-                this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得が完了");
-                logger.Info("dcmファイルの取得完了");
-                isReading = false;
-                StatusBarLabel.Content = this.ChangeStatusBar(isReading);
-            }
-            catch (OperationCanceledException)
-            {
-                //キャンセルボタンによる取込中断
-                this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
-                logger.Info("dcmファイルの取得を中断");
+                // ファイル読込
+                // Validate
+                foreach (var file in this.MonitorTemporaryDirectory(temporaryFolderPath))
+                {
+                    if (cancellation == null)
+                    {
+                        cancellation = new CancellationTokenSource();
+                    }
 
-                Cursor = Cursors.Arrow;
+                    var token = cancellation.Token;
+
+                    DicomFileReader dicomFileReader = new DicomFileReader();
+                    await Task.Run(() =>
+                    {
+                        dicomFileReader.ReadDicomFilesAsync(file);
+                    }, token).ContinueWith(t =>
+                    {
+                        cancellation.Dispose();
+                        cancellation = null;
+
+                        if (t.IsCanceled)
+                        {
+                            // キャンセルボタンによる取込中断
+                            this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込を中断");
+                            logger.Info("dcmファイルの読込を中断");
+
+                            Cursor = Cursors.Arrow;
+                            isReading = false;
+                            StatusBarLabel.Content = this.ChangeStatusBar(isReading);
+                        }
+                    });
+                }
+
+                this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込が完了");
+                logger.Info("dcmファイルの読込完了");
                 isReading = false;
                 StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
             catch (Exception ex)
             {
-                //取込中に例外が発生したら、中断される
+                // 読込中に例外が発生したら、中断される
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", ex.Message);
                 logger.Error(ex.Message);
 
@@ -123,12 +157,61 @@ namespace DicomTagChecker.Temp
                 CancelButton.IsEnabled = false;
             }
 
-            cancellation.Dispose();
-            cancellation = null;
-
             Cursor = Cursors.Arrow;
             StartButton.IsEnabled = true;
             CancelButton.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// 選択したフォルダの中身をテンポラリーフォルダへコピー
+        /// </summary>
+        /// <param name="sourceDirName"></param>
+        /// <param name="destDirName"></param>
+        private void CopyDirectory(string sourceDirName, string destDirName)
+        {
+            // コピー先のディレクトリがないときは作る
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+                // 属性もコピー
+                File.SetAttributes(destDirName, File.GetAttributes(sourceDirName));
+            }
+
+            // コピー先のディレクトリ名の末尾に"\"をつける
+            if (destDirName[destDirName.Length - 1] != Path.DirectorySeparatorChar)
+            {
+                destDirName = destDirName + Path.DirectorySeparatorChar;
+            }
+
+            // コピー元のディレクトリにあるファイルをコピー
+            string[] files = Directory.GetFiles(sourceDirName);
+            foreach (string file in files)
+            {
+                File.Copy(file, destDirName + Path.GetFileName(file), true);
+            }
+
+            // コピー元のディレクトリにあるディレクトリについて、再帰的に呼び出す
+            string[] dirs = Directory.GetDirectories(sourceDirName);
+            foreach (string dir in dirs)
+            {
+                CopyDirectory(dir, destDirName + Path.GetFileName(dir));
+            }
+        }
+
+        /// <summary>
+        /// 拡張子が.dcmのファイルのみを取得
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <returns></returns>
+        private string[] MonitorTemporaryDirectory(string folder)
+        {
+            string filePattern = Settings.Default.FilePattern;
+            string extention = Path.GetExtension(filePattern);
+
+            // 監視対象フォルダにある、指定した拡張子で終わるファイルを取得。
+            // "*.dcm"と指定したとき、"*.dcmabc"は取得しない。
+            return Directory.GetFiles(folder, filePattern).
+                Where(x => x.EndsWith(extention, StringComparison.OrdinalIgnoreCase)).ToArray();
         }
 
         /// <summary>
@@ -189,13 +272,13 @@ namespace DicomTagChecker.Temp
                 {
                     if (cancellation != null)
                     {
-                        cancellation?.Cancel();
+                        cancellation.Cancel();
                     }
                 }
             }
             else
             {
-                //取り込み処理していないときはキャンセルボタンを押せないので、ここに来ることはないが一応...
+                // 取り込み処理していないときはキャンセルボタンを押せないので、ここに来ることはないが一応...
                 this.LogDataGrid.ItemsSource = this.WriteLog("エラー", $"処理未実行");
             }
         }
@@ -226,7 +309,7 @@ namespace DicomTagChecker.Temp
         /// </summary>
         private string ChangeStatusBar(bool isReading)
         {
-            string message = isReading ? "取込中" : "準備完了";
+            string message = isReading ? "読込中" : "準備完了";
 
             return message;
         }
@@ -240,11 +323,11 @@ namespace DicomTagChecker.Temp
         {
             if (isReading)
             {
-                var result = MessageBox.Show("取り込み処理を中断してアプリを終了しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
+                var result = MessageBox.Show("読込処理を中断してアプリを終了しますか？", "確認", MessageBoxButton.YesNo, MessageBoxImage.Exclamation, MessageBoxResult.No);
                 if (result == MessageBoxResult.Yes)
                 {
-                    this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル取得を中断");
-                    logger.Info("dcmファイルの取得を中断");
+                    this.LogDataGrid.ItemsSource = this.WriteLog("中断", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込を中断");
+                    logger.Info("dcmファイルの読込を中断");
                 }
                 else
                 {
@@ -252,6 +335,5 @@ namespace DicomTagChecker.Temp
                 }
             }
         }
-
     }
 }

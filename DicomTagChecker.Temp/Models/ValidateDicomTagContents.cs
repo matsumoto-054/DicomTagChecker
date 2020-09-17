@@ -7,12 +7,12 @@ namespace DicomTagChecker.Temp
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        //DicomタグのValidationチェック
+        // DicomタグのValidationチェック
         public bool HasErrorTag(DicomTagContents dicomTagContents)
         {
             try
             {
-                //Validateするタグを順次追加
+                // Validateするタグを順次追加
                 this.ValidatePatientId(dicomTagContents.PatientId);
             }
             catch
@@ -31,7 +31,7 @@ namespace DicomTagChecker.Temp
         {
             if (string.IsNullOrWhiteSpace(patientId) || !Regex.IsMatch(patientId, "^[0-9a-zA-Z-]{1,32}$"))
             {
-                logger.Info("不正なPatientId");
+                logger.Info($"不正なPatientId：{patientId}");
                 throw new InvalidPatientIdException("DICOMタグエラー：PatientId");
             }
         }
