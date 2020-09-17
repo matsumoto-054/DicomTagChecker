@@ -201,6 +201,16 @@ namespace DicomTagChecker.Temp
         }
 
         /// <summary>
+        /// ログを消去
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            logContents.Clear();
+        }
+
+        /// <summary>
         /// 終了ボタン
         /// </summary>
         /// <param name="sender"></param>
@@ -242,5 +252,6 @@ namespace DicomTagChecker.Temp
                 }
             }
         }
+
     }
 }
