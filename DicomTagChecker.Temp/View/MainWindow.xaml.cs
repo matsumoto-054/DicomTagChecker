@@ -140,10 +140,6 @@ namespace DicomTagChecker.Temp
 
                 this.LogDataGrid.ItemsSource = this.WriteLog("終了", $"\"{FolderPathTextBox.Text}\"内のdcmファイル読込が完了");
                 logger.Info("dcmファイルの読込完了");
-
-                isReading = false;
-                this.ChangeCursorAndEnableButtons(isReading);
-                StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
             catch (Exception ex)
             {
@@ -155,6 +151,16 @@ namespace DicomTagChecker.Temp
                 this.ChangeCursorAndEnableButtons(isReading);
                 StatusBarLabel.Content = this.ChangeStatusBar(isReading);
             }
+
+            // 読込が終了したらtempフォルダの中身を削除する
+            foreach(var file in this.MonitorTemporaryDirectory(temporaryFolderPath))
+            {
+                File.Delete(file);
+            }
+
+            isReading = false;
+            this.ChangeCursorAndEnableButtons(isReading);
+            StatusBarLabel.Content = this.ChangeStatusBar(isReading);
         }
 
         /// <summary>
