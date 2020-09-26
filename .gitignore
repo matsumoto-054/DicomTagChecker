@@ -1,6 +1,6 @@
-/DicomTagChecker.Temp/bin/
-/DicomTagChecker.Temp/obj/
-.vs
-TestResults
-/DicomTagUnitTest/bin/
-/DicomTagUnitTest/obj/
+DicomTagChecker.Temp/bin/
+DicomTagChecker.Temp/obj/
+.vs/
+TestResults/
+DicomTagUnitTest/bin/
+DicomTagUnitTest/obj/
