@@ -17,8 +17,6 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\bin\Debug\netcoreapp3.0\System.Reactive.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\bin\Debug\netcoreapp3.0\System.Reactive.xml
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main.csprojAssemblyReference.cache
-D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\Main.baml
-D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\Main.g.cs
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\App.g.cs
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main_MarkupCompile.cache
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main.g.resources
@@ -29,3 +27,12 @@ D:\自分用（shareにあげる）\案件\【6279】コンバートツール\�
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main.dll
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main.pdb
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main.genruntimeconfig.cache
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\SelectDirectory.g.cs
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\DicomTagChecker.Main_MarkupCompile.lref
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\SelectDirectory.baml
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\Operation.g.cs
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\StatusBar.g.cs
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\Operation.baml
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\StatusBar.baml
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\MainWindow.baml
+D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\obj\Debug\netcoreapp3.0\Views\MainWindow.g.cs

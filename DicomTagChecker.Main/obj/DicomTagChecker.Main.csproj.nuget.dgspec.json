@@ -39,13 +39,17 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Prism.Core": {
+              "target": "Package",
+              "version": "[7.2.0.1422, )"
+            },
             "Prism.Unity": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
             },
             "ReactiveProperty": {
               "target": "Package",
-              "version": "[7.1.0, )"
+              "version": "[7.4.1, )"
             }
           },
           "imports": [

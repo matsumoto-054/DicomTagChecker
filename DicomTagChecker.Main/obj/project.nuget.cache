@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "paEzQrQiEq16/IBHrh9cGtTEsTvsMC+FqbTbEN5gzFS8jGYj28yCNBXttnWwzQHyzHlft/KNWDlY2OSscZHSZw==",
+  "dgSpecHash": "+H/h9q+bW+mQcMLO9hHtQT4atDhn6XEjL/k0ofMX3BR5aoxJ0rMZNHlrOaC/OOjHUh/CUY2RcdxoloGGb/ClMA==",
   "success": true,
   "projectFilePath": "D:\\自分用（shareにあげる）\\案件\\【6279】コンバートツール\\関連アプリ\\DicomTagChecker\\DicomTagChecker.Main\\DicomTagChecker.Main.csproj",
   "expectedPackageFiles": [
@@ -8,8 +8,8 @@
     "C:\\Users\\matsu\\.nuget\\packages\\prism.core\\7.2.0.1422\\prism.core.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\prism.unity\\7.2.0.1422\\prism.unity.7.2.0.1422.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\prism.wpf\\7.2.0.1422\\prism.wpf.7.2.0.1422.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\reactiveproperty\\7.1.0\\reactiveproperty.7.1.0.nupkg.sha512",
-    "C:\\Users\\matsu\\.nuget\\packages\\reactiveproperty.core\\7.1.0\\reactiveproperty.core.7.1.0.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\reactiveproperty\\7.4.1\\reactiveproperty.7.4.1.nupkg.sha512",
+    "C:\\Users\\matsu\\.nuget\\packages\\reactiveproperty.core\\7.4.1\\reactiveproperty.core.7.4.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.reactive\\4.4.1\\system.reactive.4.4.1.nupkg.sha512",
     "C:\\Users\\matsu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",

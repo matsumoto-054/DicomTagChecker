@@ -7,7 +7,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Main.xaml">
+    <Compile Update="Views\Operation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SelectDirectory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\StatusBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Operation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SelectDirectory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StatusBar.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

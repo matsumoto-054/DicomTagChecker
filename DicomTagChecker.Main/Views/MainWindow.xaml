@@ -1,0 +1,29 @@
+﻿<Window x:Class="DicomTagChecker.Main.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="DICOMタグチェッカー"
+        Height="350"
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Meiryo" Loaded="OnLoaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ContentControl
+            Grid.Row="0"
+            Margin="20"
+            prism:RegionManager.RegionName="SelectDirectoryRegion" />
+        <ContentControl
+            Grid.Row="1"
+            Margin="20"
+            prism:RegionManager.RegionName="OperationRegion" />
+        <ContentControl
+            Grid.Row="2"
+            prism:RegionManager.RegionName="StatusBarRegion" />
+    </Grid>
+</Window>

@@ -1,13 +1,14 @@
 ﻿using Prism.Ioc;
-using DicomTagChecker.Views;
+using DicomTagChecker.Main.Views;
 using System.Windows;
+using Prism.Unity;
 
-namespace DicomTagChecker
+namespace DicomTagChecker.Main
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App : PrismApplication
     {
         protected override Window CreateShell()
         {

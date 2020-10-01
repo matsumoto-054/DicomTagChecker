@@ -54,10 +54,10 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
-      "ReactiveProperty/7.1.0": {
+      "ReactiveProperty/7.4.1": {
         "type": "package",
         "dependencies": {
-          "ReactiveProperty.Core": "7.1.0",
+          "ReactiveProperty.Core": "7.4.1",
           "System.ComponentModel.Annotations": "4.7.0",
           "System.Reactive": "4.4.1"
         },
@@ -68,7 +68,7 @@
           "lib/netstandard2.0/ReactiveProperty.dll": {}
         }
       },
-      "ReactiveProperty.Core/7.1.0": {
+      "ReactiveProperty.Core/7.4.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/ReactiveProperty.Core.dll": {}
@@ -219,29 +219,29 @@
         "prism.wpf.nuspec"
       ]
     },
-    "ReactiveProperty/7.1.0": {
-      "sha512": "TnPeeUD6aJOzHHZeIB743MEYC3z2X/74mIJ9gURvYmgCf034cc0pBabbhYBF8Qid4Md6u7HBRJBv/ybj1DlVjQ==",
+    "ReactiveProperty/7.4.1": {
+      "sha512": "h22iKghsm9xb1fLVjGkm9YbcTUXAcu2gSKD739euaVXIH3cs/6NScvdo9fA7QKtsWYPPSiIQ1P4sNsPfaVT3oQ==",
       "type": "package",
-      "path": "reactiveproperty/7.1.0",
+      "path": "reactiveproperty/7.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ReactivePropertyIcon_100x100.png",
         "lib/netstandard2.0/ReactiveProperty.dll",
-        "reactiveproperty.7.1.0.nupkg.sha512",
+        "reactiveproperty.7.4.1.nupkg.sha512",
         "reactiveproperty.nuspec"
       ]
     },
-    "ReactiveProperty.Core/7.1.0": {
-      "sha512": "C2PseOnogUdwzlCyOF/e3dk8eO9y3NbTyTkSswJzAFAimPn9EU6t1TKbrnlwMFquxDvbrO3N0Hi3Yb2YoHpT4Q==",
+    "ReactiveProperty.Core/7.4.1": {
+      "sha512": "qcFgN9wY51cneXSLG4pYpzFeocXer/6m2a1QFms1QVAFOawWUZx8PZ9+HPrUCbJ+sVD3vfbg3EwXsjeJV8Nt6g==",
       "type": "package",
-      "path": "reactiveproperty.core/7.1.0",
+      "path": "reactiveproperty.core/7.4.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ReactivePropertyIcon_100x100.png",
         "lib/netstandard2.0/ReactiveProperty.Core.dll",
-        "reactiveproperty.core.7.1.0.nupkg.sha512",
+        "reactiveproperty.core.7.4.1.nupkg.sha512",
         "reactiveproperty.core.nuspec"
       ]
     },
@@ -477,8 +477,9 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
+      "Prism.Core >= 7.2.0.1422",
       "Prism.Unity >= 7.2.0.1422",
-      "ReactiveProperty >= 7.1.0"
+      "ReactiveProperty >= 7.4.1"
     ]
   },
   "packageFolders": {
@@ -519,13 +520,17 @@
     "frameworks": {
       "netcoreapp3.0": {
         "dependencies": {
+          "Prism.Core": {
+            "target": "Package",
+            "version": "[7.2.0.1422, )"
+          },
           "Prism.Unity": {
             "target": "Package",
             "version": "[7.2.0.1422, )"
           },
           "ReactiveProperty": {
             "target": "Package",
-            "version": "[7.1.0, )"
+            "version": "[7.4.1, )"
           }
         },
         "imports": [

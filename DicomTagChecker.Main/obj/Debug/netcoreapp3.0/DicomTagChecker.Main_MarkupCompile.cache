@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 D:\自分用（shareにあげる）\案件\【6279】コンバートツール\関連アプリ\DicomTagChecker\DicomTagChecker.Main\App.xaml
-12135995416
+41502512651
 
-5-838402493
-209-1840083580
-Views\Main.xaml;
+8-645529265
+209675185706
+Views\MainWindow.xaml;Views\Operation.xaml;Views\SelectDirectory.xaml;Views\StatusBar.xaml;
 
 False
 
